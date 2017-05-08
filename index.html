@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>CPS630 - Lab 2 - Weather</title>
+
+    <meta name=viewport content="width=device-width, initial-scale=1"/>
+
+    <script src="js/script.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/global-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/weather-icons.css"/>
+    <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.css"/>
+
+    <link rel="icon" type="image/png" href="img/favicon.png"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="active header-element"><a class="smallCaps">Home</a></li>
+            <li class="header-element"><a class="smallCaps" href="">About</a></li>
+            <li class="header-element"><a class="smallCaps" href="../">Labs</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="section-input" class="panel container-float center">
+            <!--form name="form" onkeypress="checkSubmit(event)"-->
+                <div class="input-container">
+                    <span class="input-label smallCaps">Units</span>
+					<div class="label-container">
+						<label class="radio-label" for="metric"><input type="radio" name="units" value="metric" checked="true"/>Metric</label>
+						<label class="radio-label" for="imperial"><input type="radio" name="units" value="imperial"/>Imperial</label>
+					</div>
+                </div>
+                <div class="input-container">
+                    <span class="input-label smallCaps">City</span>
+                    <input type="text" id="search" required="true" onkeypress="checkSubmit(event)"/>
+                </div>
+                <input type="button" id="submit" class="float-right smallCaps" value="Search" onclick="validateInput()"/>
+            <!--/form-->
+        </section>
+
+        <section id="section-notice" class="panel center accent">
+            Note: Date and times are in local time.
+        </section>
+
+        <section id="section-weather" class="center container-panel">
+            <section id="section-weather-general" class="panel">
+
+                <header>
+                    <div class="ribbon"></div>
+                    <h3 class="header-section smallCaps">Current Weather</h3>
+                </header>
+
+                <section id="section-location" class="center center-text">
+                    <div id="location" class="smallCaps">
+                        Toronto, Canada
+                    </div>
+                </section>
+
+                <section id="section-general">
+                    <div id="section-general-top" class="center container-float">
+                        <span id="weather-detail-icon" class="wi wi-sm float-left"></span>
+                        <div id="weather-temperature" class="center-vertical float-left">15</div>
+                        <div id="weather-temperature-unit" class="float-left">C</div>
+                    </div>
+                    <div id="weather-description" class="center-text">Clouds</div>
+                </section>
+
+                <section id="section-details">
+                    <div id="details-wind">
+                        <div id="details-wind-label">Wind</div>
+                        <span id="details-wind-icon" class="wi wi-wind wi-icon"></span>
+                        <div id="details-wind-value">5km/h</div>
+                    </div>
+                    <div id="details-humidity">
+                        <div id="details-humidity-label">Hum</div>
+                        <span id="details-humidity-icon" class="wi wi-humidity wi-icon"></span>
+                        <div id="details-humidity-value">10%</div>
+                    </div>
+                    <div id="details-pressure">
+                        <div id="details-pressure-label">Press</div>
+                        <span id="details-pressure-icon" class="wi wi-barometer wi-icon"></span>
+                        <div id="details-pressure-value">1000kPa</div>
+                    </div>
+                </section>
+            </section>
+
+            <section id="section-weather-additional">
+                <section id="section-weather-hourly" class="panel">
+
+                    <header>
+                        <div class="ribbon"></div>
+                        <h3 class="header-section smallCaps">24-Hour Forecast</h3>
+                    </header>
+
+                    <section class="section-hourly-half">
+                        <section class="section-hourly-quarter">
+                            <!-- HOUR 0 -->
+                            <article class="forecast-hourly panel-inset center-text accent">
+                                <div class="forecast-hour">00:00</div>
+                                <span class="hourly-detail-icon wi wi-sm"></span>
+                                <div class="hourly-temperature container-float center-text center">
+                                    <div class="hourly-temperature-value center-vertical float-left">15</div>
+                                    <div class="hourly-temperature-unit float-left">C</div>
+                                </div>
+                                <div class="hourly-description center-text">Clouds</div>
+                            </article>
+
+                            <!-- HOUR 1 -->
+                            <article class="forecast-hourly panel-inset center-text">
+                                <div class="forecast-hour">03:00</div>
+                                <span class="hourly-detail-icon wi wi-sm"></span>
+                                <div class="hourly-temperature container-float center-text center">
+                                    <div class="hourly-temperature-value center-vertical float-left">15</div>
+                                    <div class="hourly-temperature-unit float-left">C</div>
+                                </div>
+                                <div class="hourly-description center-text">Clouds</div>
+                            </article>
+                        </section>
+
+                        <section class="section-hourly-quarter">
+                            <!-- HOUR 2 -->
+                            <article class="forecast-hourly panel-inset center-text">
+                                <div class="forecast-hour">06:00</div>
+                                <span class="hourly-detail-icon wi wi-sm"></span>
+                                <div class="hourly-temperature container-float center-text center">
+                                    <div class="hourly-temperature-value center-vertical float-left">15</div>
+                                    <div class="hourly-temperature-unit float-left">C</div>
+                                </div>
+                                <div class="hourly-description center-text">Clouds</div>
+                            </article>
+
+                            <!-- HOUR 3 -->
+                            <article class="forecast-hourly panel-inset center-text">
+                                <div class="forecast-hour">09:00</div>
+                                <span class="hourly-detail-icon wi wi-sm"></span>
+                                <div class="hourly-temperature container-float center-text center">
+                                    <div class="hourly-temperature-value center-vertical float-left">15</div>
+                                    <div class="hourly-temperature-unit float-left">C</div>
+                                </div>
+                                <div class="hourly-description center-text">Clouds</div>
+                            </article>
+                        </section>
+                    </section>
+
+                    <section class="section-hourly-half">
+                        <section class="section-hourly-quarter">
+                            <!-- HOUR 4 -->
+                            <article class="forecast-hourly panel-inset center-text">
+                                <div class="forecast-hour">12:00</div>
+                                <span class="hourly-detail-icon wi wi-sm"></span>
+                                <div class="hourly-temperature container-float center-text center">
+                                    <div class="hourly-temperature-value center-vertical float-left">15</div>
+                                    <div class="hourly-temperature-unit float-left">C</div>
+                                </div>
+                                <div class="hourly-description center-text">Clouds</div>
+                            </article>
+
+                            <!-- HOUR 5 -->
+                            <article class="forecast-hourly panel-inset center-text">
+                                <div class="forecast-hour">15:00</div>
+                                <span class="hourly-detail-icon wi wi-sm"></span>
+                                <div class="hourly-temperature container-float center-text center">
+                                    <div class="hourly-temperature-value center-vertical float-left">15</div>
+                                    <div class="hourly-temperature-unit float-left">C</div>
+                                </div>
+                                <div class="hourly-description center-text">Clouds</div>
+                            </article>
+                        </section>
+
+                        <section class="section-hourly-quarter">
+                            <!-- HOUR 6 -->
+                            <article class="forecast-hourly panel-inset center-text">
+                                <div class="forecast-hour">18:00</div>
+                                <span class="hourly-detail-icon wi wi-sm"></span>
+                                <div class="hourly-temperature container-float center-text center">
+                                    <div class="hourly-temperature-value center-vertical float-left">15</div>
+                                    <div class="hourly-temperature-unit float-left">C</div>
+                                </div>
+                                <div class="hourly-description center-text">Clouds</div>
+                            </article>
+
+                            <!-- HOUR 7 -->
+                            <article class="forecast-hourly panel-inset center-text">
+                                <div class="forecast-hour">21:00</div>
+                                <span class="hourly-detail-icon wi wi-sm"></span>
+                                <div class="hourly-temperature container-float center-text center">
+                                    <div class="hourly-temperature-value center-vertical float-left">15</div>
+                                    <div class="hourly-temperature-unit float-left">C</div>
+                                </div>
+                                <div class="hourly-description center-text">Clouds</div>
+                            </article>
+                        </section>
+                    </section>
+                </section>
+
+                <section id="section-weather-5day" class="panel">
+
+                    <header>
+                        <div class="ribbon"></div>
+                        <h3 class="header-section smallCaps">5-Day Forecast</h3>
+                    </header>
+
+                    <section id="section-forecast">
+                        <!-- DAY 0 -->
+                        <article class="accent forecast-day panel-inset center-text">
+                            <div class="forecast-date">Feb 3</div>
+                            <span class="forecast-detail-icon wi wi-sm"></span>
+                            <div class="forecast-temperature container-float center-text center">
+                                <div class="forecast-temperature-value center-vertical float-left">15</div>
+                                <div class="forecast-temperature-unit float-left">C</div>
+                            </div>
+                            <div class="weather-description center-text">Clouds</div>
+                        </article>
+
+                        <!-- DAY 1 -->
+                        <article class="forecast-day panel-inset center-text">
+                            <div class="forecast-date">Feb 4</div>
+                            <span class="forecast-detail-icon wi wi-sm"></span>
+                            <div class="forecast-temperature container-float center-text center">
+                                <div class="forecast-temperature-value center-vertical float-left">15</div>
+                                <div class="forecast-temperature-unit float-left">C</div>
+                            </div>
+                            <div class="weather-description center-text">Clouds</div>
+                        </article>
+
+                        <!-- DAY 2 -->
+                        <article class="forecast-day panel-inset center-text">
+                            <div class="forecast-date">Feb 5</div>
+                            <span class="forecast-detail-icon wi wi-sm"></span>
+                            <div class="forecast-temperature container-float center-text center">
+                                <div class="forecast-temperature-value center-vertical float-left">15</div>
+                                <div class="forecast-temperature-unit float-left">C</div>
+                            </div>
+                            <div class="weather-description center-text">Clouds</div>
+                        </article>
+
+                        <!-- DAY 3 -->
+                        <article class="forecast-day panel-inset center-text">
+                            <div class="forecast-date">Feb 6</div>
+                            <span class="forecast-detail-icon wi wi-sm"></span>
+                            <div class="forecast-temperature container-float center-text center">
+                                <div class="forecast-temperature-value center-vertical float-left">15</div>
+                                <div class="forecast-temperature-unit float-left">C</div>
+                            </div>
+                            <div class="weather-description center-text">Clouds</div>
+                        </article>
+
+                        <!-- DAY 4 -->
+                        <article class="forecast-day panel-inset center-text">
+                            <div class="forecast-date">Feb 7</div>
+                            <span class="forecast-detail-icon wi wi-sm"></span>
+                            <div class="forecast-temperature container-float center-text center">
+                                <div class="forecast-temperature-value center-vertical float-left">15</div>
+                                <div class="forecast-temperature-unit float-left">C</div>
+                            </div>
+                            <div class="weather-description center-text">Clouds</div>
+                        </article>
+                    </section>
+                </section>
+            </section>
+        </section>
+
+        <section id="section-attribution" class="panel center">
+            Weather Icons by <a href="https://erikflowers.github.io/weather-icons/"><strong>Erik Flowers</strong></a>.
+        </section>
+    </main>
+    <footer>
+        <details class="smallCaps">
+            <summary>&copy; 2017</summary>
+            <div>Christopher Collins 500512454</div>
+        </details>
+    </footer>
+</body>
+
+</html>
